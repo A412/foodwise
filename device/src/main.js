@@ -80,15 +80,15 @@ application.behavior = Behavior({
         					vref: {pin: 54}
                 }
             },
-            // water: {
-            //     require: "water",
-            //     pins: {
-            //       power: {pin: 55, type:"Power", voltage:3.3},
-        				// 	uv: {pin: 56},
-            //       ground: {pin: 57, type:"Ground"},
-        				// 	vref: {pin: 58}
-            //     }
-            // },
+            freshness: {
+                require: "freshness",
+                pins: {
+                  power: {pin: 55, type:"Power", voltage:3.3},
+        					uv: {pin: 56},
+                  ground: {pin: 57, type:"Ground"},
+        					vref: {pin: 58}
+                }
+            },
             scan: {
                 require: "Digital",
                 pins: {
