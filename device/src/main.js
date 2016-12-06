@@ -161,27 +161,32 @@ application.behavior = Behavior({
 		}
 	},
 	onScan(app, value) {
-		if (value) {
-			app.main.empty(1);
-			app.main.add(
-				new Label({
-					left: 10, top: 10,
-					name: 'message',
-					style: new Style({ font: '30px Avenir', color: 'black' }),
-					string: "Scan complete."
-				})
-			);
-			app.main.add(
-				new Label({
-					left: 10,
-					name: 'message',
-					style: new Style({ font: '25px Avenir', color: 'black' }),
-					string: "Finish adding item on app."
-				})
-			)
-		} else {
-			Pins.invoke("/ready/read", value => this.onReady(application, value));
-		}
+		Pins.invoke("/ready/read", ready => {
+			if (ready) {
+				if (value) {
+					app.main.empty(1);
+					app.main.add(
+						new Label({
+							left: 10, top: 10,
+							name: 'message',
+							style: new Style({ font: '30px Avenir', color: 'black' }),
+							string: "Scan complete."
+						})
+					);
+					app.main.add(
+						new Label({
+							left: 10,
+							name: 'message',
+							style: new Style({ font: '25px Avenir', color: 'black' }),
+							string: "Finish adding item on app."
+						})
+					)
+				}
+				//  else {
+				// 	Pins.invoke("/ready/read", value => this.onReady(application, value));
+				// }
+			}
+		});
 	},
 	onFoodAmountChanged(app, value) {		
         var data = this.data;
