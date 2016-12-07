@@ -45,17 +45,9 @@ let mainScreen = new Column({
 	name: 'main',
 	left: 0, right: 0, top: 0, bottom: 0, skin: background,
 	contents: [
-		new Line({
-			name: 'header',
-			skin: new Skin({ fill: 'white' }),
-			height: 50, width: 320,
-			contents: [
-				new Label({ 
-					left: 20,
-					string: "Foodwise", 
-					style: new Style({ font: 'bold 50px Avenir', color: '#2D9CDB' })}),
-			]
-		}),
+		new Container({			name: 'header',			skin: whiteSkin,			width: 320, height: 50,			contents: [				new Picture({
+					top: 10, left:10,
+			right: 120,					height:35,					url: "../assets/header.png"				})			]		}),
 		new Label({
 			left: 10, top: 10,
 			name: 'message',
