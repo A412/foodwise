@@ -2,5 +2,6 @@ export var items = [	{ id: 0, name: 'Strawberries', life: 4, img: 'assets/straw
   
 export var demoAddItems = [
 	{ img: 'assets/Beans.png', recipes: ['White Bean with Escarole Soup', 'Beef and Bean Enchilada'] },
-	{ img: 'assets/carrots.png', recipes: ['Gingered Carrots', 'Veggie Stir Fry', 'Carrot Cake']}
+	{ img: 'assets/carrots.png', recipes: ['Gingered Carrots', 'Veggie Stir Fry', 'Carrot Cake']},
+	{ img: 'assets/blood-orange.png', recipes: ['Fruit Salad']}
 ];
