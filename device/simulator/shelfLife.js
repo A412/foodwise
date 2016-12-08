@@ -34,11 +34,11 @@ exports.configure = function(configuration) {
 				{
 					ioType : "input",
 					dataType : "float",
-					valueLabel : "weight",
-					valueID : "weight",
+					valueLabel : "life",
+					valueID : "life",
 					minValue : 0,
 					maxValue : 10,
-					value : 3,
+					value : 0,
 					speed : 1,
                     defaultControl: PinsSimulators.SLIDER
 				}
@@ -63,7 +63,7 @@ exports.metadata = {
 			result: 
 				{ type: "Object", name: "result", properties:
 					[
-						{ type: "Number", name: "weight", defaultValue: 0, min: 0, max: 10, decimalPlaces: 2 }
+						{ type: "Number", name: "life", defaultValue: 0, min: 0, max: 10, decimalPlaces: 2 }
 					]
 				},
 		},

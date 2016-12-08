@@ -25,7 +25,7 @@ exports.pins = {
 exports.configure = function(configuration) {
     this.pinsSimulator = shell.delegate("addSimulatorPart", {
         header : { 
-            label : "Shelf life",
+            label : "Quantity",
             name : "Sensor Input",
             iconVariant : PinsSimulators.SENSOR_MODULE
         },
@@ -34,11 +34,11 @@ exports.configure = function(configuration) {
 				{
 					ioType : "input",
 					dataType : "float",
-					valueLabel : "weight",
-					valueID : "weight",
+					valueLabel : "quantity",
+					valueID : "quantity",
 					minValue : 0,
-					maxValue : 10,
-					value : 3,
+					maxValue : 20,
+					value : 0,
 					speed : 1,
                     defaultControl: PinsSimulators.SLIDER
 				}
@@ -63,7 +63,7 @@ exports.metadata = {
 			result: 
 				{ type: "Object", name: "result", properties:
 					[
-						{ type: "Number", name: "weight", defaultValue: 0, min: 0, max: 10, decimalPlaces: 2 }
+						{ type: "Number", name: "quantity", defaultValue: 0, min: 0, max: 10, decimalPlaces: 2 }
 					]
 				},
 		},

@@ -45,9 +45,19 @@ let mainScreen = new Column({
 	name: 'main',
 	left: 0, right: 0, top: 0, bottom: 0, skin: background,
 	contents: [
-		new Container({			name: 'header',			skin: whiteSkin,			width: 320, height: 50,			contents: [				new Picture({
+		new Container({
+			name: 'header',
+			skin: whiteSkin,
+			width: 320, height: 50,
+			contents: [
+				new Picture({
 					top: 10, left:10,
-			right: 120,					height:35,					url: "../assets/header.png"				})			]		}),
+			right: 120,
+					height:35,
+					url: "../assets/header.png"
+				})
+			]
+		}),
 		new Label({
 			left: 10, top: 10,
 			name: 'message',
@@ -63,22 +73,22 @@ application.behavior = Behavior({
     onLaunch(application) {
         this.data = { labels: {} };
 		Pins.configure({
-            scale: {
-                require: "scale",
-                pins: {
-                  power: {pin: 51, type:"Power", voltage:3.3},
-        					uv: {pin: 52},
-                  ground: {pin: 53, type:"Ground"},
-        					vref: {pin: 54}
-                }
-            },
-            freshness: {
-                require: "freshness",
+            shelfLife: {
+                require: "shelfLife",
                 pins: {
                   power: {pin: 55, type:"Power", voltage:3.3},
         					uv: {pin: 56},
                   ground: {pin: 57, type:"Ground"},
         					vref: {pin: 58}
+                }
+            },
+            quantity: {
+                require: "quantity",
+                pins: {
+                  power: {pin: 51, type:"Power", voltage:3.3},
+        					uv: {pin: 52},
+                  ground: {pin: 53, type:"Ground"},
+        					vref: {pin: 54}
                 }
             },
             scan: {
