@@ -26,3 +26,32 @@ export let currentScreen = 'inventory';
 
 /* just sgeneral variables */ 
 export let itemName;
+
+/* pressed button changed skin*/
+export let pressed_inv_skin  = new Skin({
+		width: 54, height:54,
+		texture: new Texture("assets/inventory-chosen.png"),
+		fill: "white",
+		aspect: "fit"
+	});
+
+export let pressed_shop_skin  = new Skin({
+		width: 48, height:48,
+		texture: new Texture("assets/shopping-chosen.png"),
+		fill: "white",
+		aspect: "fit"
+});
+
+export let unpressed_inv_skin  = new Skin({
+		width: 54, height:54,
+		texture: new Texture("assets/inventory.png"),
+		fill: "white",
+		aspect: "fit"
+	});
+
+export let unpressed_shop_skin  = new Skin({
+		width: 48, height:48,
+		texture: new Texture("assets/shopping.png"),
+		fill: "white",
+		aspect: "fit"
+})

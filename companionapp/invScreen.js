@@ -127,7 +127,12 @@ export let InventoryScreen = Column.template($ => ({
 	        } else {
 	        	trace("No remote pins\n");
 	        }
-
+	  //       application.hAndN.invBtn.skin = new Skin({
+			// 	width: 54, height:54,
+			// 	texture: new Texture("assets/inventory-chosen.png"),
+			// 	fill: "white",
+			// 	aspect: "fit"
+			// });
         }
     })
 }));
