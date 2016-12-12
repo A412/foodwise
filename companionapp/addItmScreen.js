@@ -111,7 +111,7 @@ let freshnessInput = Line.template($ => ({
 	]
 }));
 
-let quantity;
+let quantity = 0; //check see if fixes issues
 let unit = "";
 
 let MyRadioGroup = RadioGroup.template($ => ({
@@ -226,7 +226,7 @@ let submitButton = Container.template($ => ({
 	active: true,
 	behavior: Behavior ({
 		onTouchEnded: function(content, id, x, y, ticks) {
-			items.push({ id: 0, name: itemName, life: life, unit: unit,
+			items.push({ id: items.length, name: itemName, life: life, unit: unit, //there may be a problem with the id here, it was 0 and i changed to items.length
 				         img: newItem.img, 
 				         quantity: quantity, 
 				         recipes: newItem.recipes});
@@ -305,7 +305,7 @@ export let addItemScreen = Column.template($ => ({
 
 						// Read freshness
 			        	remotePins.invoke("/shelfLife/read", 100, value => {
-			        		life = Math.ceil(value.life);
+			        		life = Math.ceil(value.life); 
 			        		content[2][1].label.string = life + ' days until spoiled';
 			        	});
 	        		} else if (value == 0 && content.imgHolder.pic) {

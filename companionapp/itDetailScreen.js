@@ -49,69 +49,69 @@ export let itemScreen = Column.template($ => ({
 					string: $.itemName
 				})
 			]}),
-		new Line({
-			width: 320,
-			left: 10,
-			contents: [
-		 		new Picture({ height: 100, url: $.itemPicture }),
-		  		new Column({
-		  			width: 200,
-		  			contents: [
-					    new Label({
-					    	left: 0,
-					    	style: normalStyle,
-					    	string: $.quantity + '' + $.unit + " remaining"
-					    }),
-					    new Label({
-					    	left: 0,
-					    	style: normalStyle,
-					    	string: "Entered 1 day ago"
-					    }),
-					    new Label({
-					    	left: 0,
-					    	style: normalStyle,
-					    	string: $.life + " days until spoiled"
-					    })
-					]
-				}),
-			]
-		}),
-		new Column({ // status bar
-			left: 40, right: 40, height: 30,  top: 10,
-			contents: [
-				new StatusBar({ 
-				    width: 260, height: 15, bottom: 10,
-				    life: $.life 
-				}),
-				new Container({
-					contents: [
-						new Label({
-							left: 0, width: 260,
-							style: new Style({ font: "18px Avenir", color: "black", horizontal: "left" }), 
-							string: 'Spoiled' 
-						}),
-						new Label({
-							right: 0, width: 260,
-							style: new Style({ font: "18px Avenir", color: "black", horizontal: "right" }), 
-							string: 'Fresh'
-						})
-					]
-				})
-		]}),
-		new Column({ // recipes
-			left: 20, top: 15,
-			contents: [
-			    new Label({
-			    	left: 0,
-			    	style: new Style({font: "bold 22px Avenir", color: "black", horizontal: "left"}), 
-			    	string: "Recipes"
-			    }),
-			    new Column({
-			    	left: 0,
-			    	contents: listOfRecipes($.recipes)
-			    })
-			]
-		}),
+			new Line({
+				width: 320,
+				left: 10,
+				contents: [
+			 		new Picture({ height: 100, url: $.itemPicture }),
+			  		new Column({
+			  			width: 200,
+			  			contents: [
+						    new Label({
+						    	left: 0,
+						    	style: normalStyle,
+						    	string: $.quantity + '' + $.unit + " remaining"
+						    }),
+						    new Label({
+						    	left: 0,
+						    	style: normalStyle,
+						    	string: "Entered 1 day ago"
+						    }),
+						    new Label({
+						    	left: 0,
+						    	style: normalStyle,
+						    	string: $.life + " days until spoiled"
+						    })
+						]
+					}),
+				]
+			}),
+			new Column({ // status bar
+				left: 40, right: 40, height: 30,  top: 10,
+				contents: [
+					new StatusBar({ 
+					    width: 260, height: 15, bottom: 10,
+					    life: $.life 
+					}),
+					new Container({
+						contents: [
+							new Label({
+								left: 0, width: 260,
+								style: new Style({ font: "18px Avenir", color: "black", horizontal: "left" }), 
+								string: 'Spoiled' 
+							}),
+							new Label({
+								right: 0, width: 260,
+								style: new Style({ font: "18px Avenir", color: "black", horizontal: "right" }), 
+								string: 'Fresh'
+							})
+						]
+					})
+			]}),
+			new Column({ // recipes
+				left: 20, top: 15,
+				contents: [
+				    new Label({
+				    	left: 0,
+				    	style: new Style({font: "bold 22px Avenir", color: "black", horizontal: "left"}), 
+				    	string: "Recipes"
+				    }),
+				    new Column({
+				    	left: 0,
+				    	contents: listOfRecipes($.recipes)
+				    })
+				]
+			}),
     new Column({
   		left: 20, top: 15, height: 40, 
   		contents: [
