@@ -7,7 +7,7 @@ import {background,
 	currentScreen,
 	itemName
 } from "variables";
-import {StatusBar} from "invScreen";
+import {StatusBar, InventoryScreen, addItemButton} from "invScreen";
 import {
     FieldScrollerBehavior,
     FieldLabelBehavior
@@ -25,29 +25,116 @@ let itemScreenItemName;
 function listOfRecipes(recipes) {
 	if (recipes.length > 0) {
 		return recipes.map(recipe => new Label({
-				    					left: 0,
-						  				style: new Style({font: "20px Avenir", color: "black", horizontal: "left"}), 
-						  				string: recipe
-						  			  }))
+			left: 0,
+			style: new Style({font: "20px Avenir", color: "black", horizontal: "left"}), 
+			string: recipe
+	    }))
 	} else {
 		return 'No recipes available.'
 	}
 }
 
+//use this function to redo the items list once an element is found and removed. 
+let theItemName = "placeholder";
+function redoOfItems(items, itemName) {
+	let index = items.indexOf((items.name == itemName));
+	// trace(items.name + "\n");
+
+}
+
 let normalStyle = new Style({ font: "20px Avenir", color: "black", horizontal: "left" });
 
 export let itemScreen = Column.template($ => ({
+	name: "itm_scrn",
 	skin: background,
 	left: 0, right: 0, top: 50, bottom: 0, 
 	contents: [
-		new Container({
-			left: 0, right: 0, top: 7, height: 40,
-			contents: [
-				new Label({
-					left: 20, top: 0, bottom: 0, 
-					style: new Style({ font: "bold 30px Avenir", color: "black" }), 
-					string: $.itemName
-				})
+			new Container({
+				name: "details",
+				left: 0, right: 0, top: 7, height: 40,
+				contents: [
+					new Label({	
+					name: "itm_string",				
+						left: 20, top: 0, bottom: 0, 
+						style: new Style({ font: "bold 30px Avenir", color: "black" }), 
+						string: $.itemName
+					}),
+					new Label({
+						name: "removal",
+						right:10, width:80, 
+						skin: new Skin({ fill: "#EB5757" }),
+						style: new Style({font: 'bold 20px Avenir', color: "white"}),
+						string: "REMOVE",
+						active: true,
+						behavior: Behavior({
+							onTouchEnded: function(content){
+								application.main.itm_scrn.updt_qty.updt_line.update_btn.active = false;
+								application.main.add(
+									new Column({
+										name: "rem_modal",
+										width:210, height: 75,
+										skin: borderedWhiteSkin,
+										contents: [
+											new Label({
+												top:5,
+												style: new Style({ font: 'bold 21px Avenir', color: 'black' }),
+												string: "Are you sure you want"
+											}),
+											new Label({
+												top:0,
+												style: new Style({ font: 'bold 21px Avenir', color: 'black' }),
+												string: "to remove items?"
+											}),
+											new Line({
+												top:0,
+												contents: [
+													new Label({
+														top:3, width: 35, left: 0, 
+														style: new Style({font: 'bold 20px Avenir', color: "white"}),
+														skin: darkGreySkin,
+														string: "NO",
+														active:true,
+														behavior: Behavior({
+															onTouchEnded: function(content){
+																application.main.itm_scrn.updt_qty.updt_line.update_btn.active = true;
+																application.main.remove(application.main.rem_modal);
+															}
+														})
+
+													}),
+													new Label({
+														top:3, width: 35, left:30,
+														style: new Style({font: 'bold 20px Avenir', color: "white"}),
+														skin: blueSkin,
+														string: "YES",
+														active: true,
+														behavior: Behavior({
+															onTouchEnded: function(content){
+																// Now the hardest part is to reslove the removal from the items and 
+																//rearrange the items based on id.
+																/* i need to use filter() findIndex() and probably map to 
+																create a new array of items. Once that is created than i can create a new inventory
+																screen and be safe ... i am so sure of this method. but that is tomorrow. */
+																// theItemName = application.main.itm_scrn.details.itm_string.string;
+																// trace(theItemName + "\n");
+																// redoOfItems(items, theItemName);
+																application.main.empty(0);
+																application.main.add(InventoryScreen());
+																application.main.add(headerAndNavBar);
+																application.main.add(addItemButton);
+															}
+														})
+													})
+												]
+											})
+
+										]
+									})
+								);
+							}
+						})
+					})
+
 			]}),
 			new Line({
 				width: 320,
@@ -112,7 +199,9 @@ export let itemScreen = Column.template($ => ({
 				    })
 				]
 			}),
+	// here ?
     new Column({
+    	name: "updt_qty",
   		left: 20, top: 15, height: 40, 
   		contents: [
 		    new Label({
@@ -121,6 +210,7 @@ export let itemScreen = Column.template($ => ({
 		    	string: "Update quantity"
 		    }),
 		    new Line({
+		    	name: "updt_line",
 		    	contents: [
 					new Scroller({
 						width: 100, top: 5, height: 30, active: true,
@@ -147,6 +237,7 @@ export let itemScreen = Column.template($ => ({
 						]
 					}),
 				    new Container({
+				    	name:"update_btn",
 				    	left: 10, width: 100, top: 5, height: 30, active: true, skin: blueSkin, 
 				    	contents: [
 				      		new Label({
@@ -184,7 +275,7 @@ export let itemScreen = Column.template($ => ({
 						            		}),
 											new Label({
 												height: 25, width: 100, top: 10,
-												skin: new Skin({ fill: "#2D9CDB" }),
+												skin: blueSkin,
 												style: new Style({font: 'bold 20px Avenir', color: "white"}),
 												string: "CLOSE",
 												active:true,
@@ -250,7 +341,9 @@ export let itemScreen = Column.template($ => ({
 							
 					        }
 					    }
-				      	})
+				      	})  
+
+
 				    })
 		    	]
 		    })
